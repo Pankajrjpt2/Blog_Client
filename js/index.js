@@ -100,6 +100,28 @@ button.addEventListener('click', function(){
     })
     .catch(err => {
         console.log(err);
+    }),
+
+     fetch('http://localhost:8001/v1/send/subs', {
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({email:emailId})
     })
+    .then(result => {
+        console.log(result)
+    })
+    .catch(err => {
+        console.log(err);
+    })
+
+
 })
 
+
+
+
+    
+
+   
