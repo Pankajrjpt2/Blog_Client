@@ -30,7 +30,7 @@ const swiper = new Swiper(".swiper-container", {
 const container = document.getElementById('container');
 let blog = [];
 
-fetch("http://localhost:8001/v1/blog", {
+fetch("http://localhost:8000/v1/blog", {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -88,7 +88,7 @@ button.addEventListener('click', function(){
     let emailId = document.getElementById('email').value;
     
 
-    fetch('http://localhost:8001/v1/send', {
+    fetch('http://localhost:8000/v1/send', {
         method:'POST',
         headers:{
             'Content-Type':'application/json'
@@ -102,7 +102,7 @@ button.addEventListener('click', function(){
         console.log(err);
     }),
 
-     fetch('http://localhost:8001/v1/send/subs', {
+     fetch('http://localhost:8000/v1/send/subs', {
         method:'POST',
         headers:{
             'Content-Type':'application/json'
@@ -117,6 +117,34 @@ button.addEventListener('click', function(){
     })
 
 
+})
+
+
+
+
+
+
+const wbutton = document.querySelector('.blog_write__show-btn');
+
+wbutton.addEventListener('click', function(){
+    let title = document.getElementById('title').value;
+    let thumbnail = document.getElementById('thumbnail').value;
+    let content = document.getElementById('content').value;
+    let keyword = document.getElementById('keyword').value;;
+    console.log(thumbnail);
+    fetch('http://localhost:8000/v1/bloginsert', {
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({title:title,thumbnail:thumbnail,content:content,keywords:keyword})
+    })
+    .then(result => {
+        console.log(result)
+    })
+    .catch(err => {
+        console.log(err);
+    })
 })
 
 
